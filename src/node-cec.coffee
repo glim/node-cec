@@ -113,6 +113,9 @@ class @NodeCec extends EventEmitter
 
   processPacket: ( packet ) ->
 
+    # emit raw packet
+    @emit( 'packet', packet )
+
     # no opcode?
     unless packet.tokens?.length > 1
       @emit( 'POLLING', packet )
@@ -167,8 +170,6 @@ class @NodeCec extends EventEmitter
 
 
 
-    # emit unhandled packet
-    @emit( 'packet', packet )
 
     # not handled
     return false

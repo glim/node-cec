@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "test": "echo 'no tests'",
-    "prebuild": "npm run test",
+    "prebuild": "npm run test"
   },
   "repository": {
     "type": "git",

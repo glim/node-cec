@@ -1,3 +1,5 @@
+#decaffeinate throws non-descript parse error on this file
+
 # https://gist.github.com/TooTallNate/1785026
 
 #

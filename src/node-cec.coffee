@@ -12,7 +12,8 @@ CEC = @CEC
 
 class @NodeCec extends EventEmitter
 
-  constructor: ( @cecName=null ) ->
+  constructor: (cecName=null) ->
+    @cecName = cecName
     @ready = false
     @stdinHandlers = [
 
@@ -28,8 +29,9 @@ class @NodeCec extends EventEmitter
 
     ]
 
-  start: ( @clientName = 'cec-client', @params... ) ->
-
+  start: ( clientName = 'cec-client', params... ) ->
+    @clientName = clientName
+    @params = params
     if @cecName?
       @params.push '-o'
       @params.push @cecName
@@ -79,7 +81,7 @@ class @NodeCec extends EventEmitter
         if handler.fn( line )
           handler.callback( line )
 
-
+      return
 
 
 
@@ -164,7 +166,8 @@ class @NodeCec extends EventEmitter
       else
 
         opcodes = CEC.Opcode
-        for key, opcode of opcodes when opcode == packet.opcode
+        for key, opcode of opcodes
+          continue unless opcode == packet.opcode
           @emit( key, packet, packet.args... ) if key?.length > 0
           return true
 
